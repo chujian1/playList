@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css'
-import {Link,BrowserRouter,Route,Switch} from 'react-router-dom';
+import {BrowserRouter,Route,Switch,Redirect} from 'react-router-dom';
 import Home from './home';
 import Add from './add';
 
 class APP extends React.Component{
     constructor(props){
         super(...arguments);
-        this.now = 4,
+        this.now = 0,
             this.state = {
-                data:[
+                data:[/*
                     {
                         id:0,
                         title:"木乃伊",
@@ -39,7 +39,7 @@ class APP extends React.Component{
                         selected:true,
                         like:false
                     }
-                ]
+               */ ]
             }
         this.add = this.add.bind(this);
         this.setCheckAll = this.setCheckAll.bind(this);
@@ -158,8 +158,21 @@ class APP extends React.Component{
             <BrowserRouter>
                 <div id="musicApp">
                     <Switch>
-                        {/*<Route path="/add" component={Add} />*/}
+                        <Route path="/add" render={(e)=>{
+                            return(
+                                <Add
+                                    length = {this.state.data.length}
+                                    add = {this.add}
+                                    router = {e}
+                                />
+                                )
+                        }} />
                         <Route path="/" render={(e)=>{
+                            if(this.state.data.length === 0){
+                                return (
+                                    <Redirect to="/add"/>
+                                )
+                            }
                             return <Home
                                 pathName={e.location.pathname}
                                 data={this.state.data}

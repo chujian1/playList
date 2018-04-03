@@ -2,7 +2,7 @@
  * Created by ypj on 18-4-2.
  */
 import React from 'react';
-import {Link,Route} from 'react-router-dom';
+import {Link,Route,Redirect} from 'react-router-dom';
 import Main from './main';
 import Footer from './footer'
 
@@ -15,7 +15,10 @@ export default class Home extends React.Component{
         return (
             <div>
                 <header className="title">
-                    <h2>{this.props.pathName === '/'?"播放":"收藏"}列表</h2>
+                    <h2>
+                        {this.props.pathName === '/'?"播放":"收藏"}列表
+                        <Link to="/add" className="addLink">添加歌曲</Link>
+                    </h2>
                 </header>
                 <Route path="/" exact render={()=>{
                     return (
@@ -30,6 +33,9 @@ export default class Home extends React.Component{
                     )
                 }}/>
                 <Route path="/like" render={()=>{
+                    if(likeData.length === 0){
+                        return <Redirect to="/"/>
+                    }
                     return (
                         <Main
                             data={likeData}

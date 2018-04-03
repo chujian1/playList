@@ -46,6 +46,7 @@ header {
     text-align: center;
 }
 .title {
+    position: relative;
    font: bold 16px/36px "微软雅黑";
 }
 
@@ -102,4 +103,16 @@ footer {
 .align-right {
     float: right;
     color: #666;
+}
+.addLink{
+    position:absolute;
+    right:0;
+    top:0;
+    font-size:15px;
+}
+.backLink{
+    position: absolute;
+    left:0;
+    top:0;
+    font-size:15px;
 }
