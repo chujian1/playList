@@ -12,16 +12,16 @@ export default class Add extends React.Component{
         }
     }
     getBack(){
-        if(this.props.length>0){
-            <a
-                href="javascript:;"
-                className="backLink"
-                onClick={()=>{
-                    this.props.router.history.goBack();
-                }}
-            >
-                返回
-            </a>
+        if(this.props.length > 0 ){
+            return (
+                <a
+                    href="javascript:;"
+                    className="backLink"
+                    onClick={()=>{
+                        this.props.router.history.goBack();
+                    }}
+                >返回</a>
+            );
         }
     }
     render(){
